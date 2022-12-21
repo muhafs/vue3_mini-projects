@@ -1,31 +1,38 @@
 <template>
-	<main class="container">
-		<header class="py-4 flex justify-between items-center">
-			<h2 class="text-6xl font-bold">Notes</h2>
+	<!-- <RouterView /> -->
 
-			<button type="button" class="text-4xl text-white bg-slate-900 rounded-full w-16 h-16" @click="isModalOpen = true">+</button>
-		</header>
+	<button @click="showModal = true" class="bg-teal-500 text-white text-xl px-3 py-2 shadow-md rounded-md absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hover:bg-teal-700 transition">Open Modal</button>
 
-		<section class="py-4 gap-4 gap-y-8 grid grid-cols-6 justify-items-center">
-			<div class="w-56 h-56 p-4 rounded-2xl shadow-lg flex flex-col justify-between" :style="{ backgroundColor: note.bgColor }" v-for="note in notes" :key="note.id">
-				<p class="text-sm">{{ note.content }}</p>
+	<div v-show="showModal" @click.self="closeModal()" class="absolute inset-0 w-screen h-screen bg-black/50 flex justify-center items-center">
+		<div class="bg-white flex flex-col w-full max-w-4xl max-h-[80vh] rounded-md shadow-md overflow-hidden">
+			<header class="bg-slate-600 text-white text-3xl p-3">Title</header>
 
-				<p class="text-sm font-bold">{{ note.date }}</p>
-			</div>
-		</section>
-	</main>
+			<main class="overflow-y-scroll">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellendus qui veritatis tempora optio sit voluptatem ullam quos libero illo quibusdam iusto dicta explicabo, nulla exercitationem aliquid, ex a blanditiis tenetur omnis
+				adipisci id! Quis odit vitae consequuntur ut mollitia, illo inventore, iure magni voluptates doloremque cupiditate aliquid unde quia, amet provident? Illo quidem minus, cupiditate iusto qui vitae sit in quibusdam dolorum. Sint
+				repellat itaque voluptatem, minus magnam eius quis explicabo animi illum tenetur neque consequuntur nemo beatae minima voluptates vitae accusantium facere soluta ab quas sit! Sit voluptates ratione, pariatur unde cumque error quam
+				tempore dolores incidunt aspernatur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellendus qui veritatis tempora optio sit voluptatem ullam quos libero illo quibusdam iusto dicta explicabo, nulla exercitationem
+				aliquid, ex a blanditiis tenetur omnis adipisci id! Quis odit vitae consequuntur ut mollitia, illo inventore, iure magni voluptates doloremque cupiditate aliquid unde quia, amet provident? Illo quidem minus, cupiditate iusto qui vitae
+				sit in quibusdam dolorum. Sint repellat itaque voluptatem, minus magnam eius quis explicabo animi illum tenetur neque consequuntur nemo beatae minima voluptates vitae accusantium facere soluta ab quas sit! Sit voluptates ratione,
+				pariatur unde cumque error quam tempore dolores incidunt aspernatur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellendus qui veritatis tempora optio sit voluptatem ullam quos libero illo quibusdam iusto dicta
+				explicabo, nulla exercitationem aliquid, ex a blanditiis tenetur omnis adipisci id! Quis odit vitae consequuntur ut mollitia, illo inventore, iure magni voluptates doloremque cupiditate aliquid unde quia, amet provident? Illo quidem
+				minus, cupiditate iusto qui vitae sit in quibusdam dolorum. Sint repellat itaque voluptatem, minus magnam eius quis explicabo animi illum tenetur neque consequuntur nemo beatae minima voluptates vitae accusantium facere soluta ab quas
+				sit! Sit voluptates ratione, pariatur unde cumque error quam tempore dolores incidunt aspernatur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellendus qui veritatis tempora optio sit voluptatem ullam quos libero
+				illo quibusdam iusto dicta explicabo, nulla exercitationem aliquid, ex a blanditiis tenetur omnis adipisci id! Quis odit vitae consequuntur ut mollitia, illo inventore, iure magni voluptates doloremque cupiditate aliquid unde quia,
+				amet provident? Illo quidem minus, cupiditate iusto qui vitae sit in quibusdam dolorum. Sint repellat itaque voluptatem, minus magnam eius quis explicabo animi illum tenetur neque consequuntur nemo beatae minima voluptates vitae
+				accusantium facere soluta ab quas sit! Sit voluptates ratione, pariatur unde cumque error quam tempore dolores incidunt aspernatur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellendus qui veritatis tempora
+				optio sit voluptatem ullam quos libero illo quibusdam iusto dicta explicabo, nulla exercitationem aliquid, ex a blanditiis tenetur omnis adipisci id! Quis odit vitae consequuntur ut mollitia, illo inventore, iure magni voluptates
+				doloremque cupiditate aliquid unde quia, amet provident? Illo quidem minus, cupiditate iusto qui vitae sit in quibusdam dolorum. Sint repellat itaque voluptatem, minus magnam eius quis explicabo animi illum tenetur neque consequuntur
+				nemo beatae minima voluptates vitae accusantium facere soluta ab quas sit! Sit voluptates ratione, pariatur unde cumque error quam tempore dolores incidunt aspernatur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
+				repellendus qui veritatis tempora optio sit voluptatem ullam quos libero illo quibusdam iusto dicta explicabo, nulla exercitationem aliquid, ex a blanditiis tenetur omnis adipisci id! Quis odit vitae consequuntur ut mollitia, illo
+				inventore, iure magni voluptates doloremque cupiditate aliquid unde quia, amet provident? Illo quidem minus, cupiditate iusto qui vitae sit in quibusdam dolorum. Sint repellat itaque voluptatem, minus magnam eius quis explicabo animi
+				illum tenetur neque consequuntur nemo beatae minima voluptates vitae accusantium facere soluta ab quas sit! Sit voluptates ratione, pariatur unde cumque error quam tempore dolores incidunt aspernatur?
+			</main>
 
-	<div v-show="isModalOpen" class="absolute inset-0 bg-black/40 z-10 grid place-items-center">
-		<div class="bg-white rounded-lg p-4 flex flex-col gap-4 w-6/12 relative">
-			<textarea v-model.trim="newNote" class="focus:outline-none border-2 border-blue-500 rounded-lg h-56 w-full p-4" name="note"></textarea>
-
-			<p class="text-xs text-red-600" v-if="noteError">{{ noteError }}</p>
-
-			<div class="flex justify-between items-center">
-				<button @click="closeModal()" type="button" class="bg-slate-900 text-white rounded-lg py-3 px-4 font-bold text-xl">Close</button>
-
-				<button type="button" @click="addNote()" :class="['rounded-lg py-3 px-4 font-bold text-xl', newNote == '' ? 'bg-gray-300 text-gray-700 cursor-not-allowed' : 'bg-slate-900 text-white']">Add Note</button>
-			</div>
+			<footer class="p-3 flex justify-between items-center bg-slate-600">
+				<button @click="closeModal()" type="button" class="bg-red-600 text-white px-3 py-2 rounded-md">Cancel</button>
+				<button @click="closeModal()" type="button" class="bg-blue-600 text-white px-3 py-2 rounded-md">Submit</button>
+			</footer>
 		</div>
 	</div>
 </template>
@@ -33,52 +40,9 @@
 <script setup>
 	import { ref } from 'vue';
 
-	const isModalOpen = ref(false);
-
-	const newNote = ref('');
-	const noteError = ref('');
-
-	const getRandomColor = () => {
-		return `hsl(${Math.random() * 360}, 100%, 75%)`;
-	};
-
-	const addNote = () => {
-		if (!newNote.value || !newNote.value.trim) {
-			noteError.value = '* Note Cannot be Empty';
-			return;
-		}
-
-		const date = new Date();
-
-		notes.value.push({
-			id: Math.random().toString(36),
-			content: newNote.value,
-			date: `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`,
-			bgColor: getRandomColor(),
-		});
-
-		newNote.value = '';
-		noteError.value = '';
-		isModalOpen.value = false;
-	};
+	const showModal = ref(false);
 
 	const closeModal = () => {
-		noteError.value = '';
-		isModalOpen.value = false;
+		showModal.value = false;
 	};
-
-	const notes = ref([
-		{
-			id: 1,
-			content: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint alias modi repudiandae necessitatibus velit accusamus. Fuga earum ratione iure perspiciatis!',
-			date: '2022/12/20',
-			bgColor: 'hsl(254.24292366578797, 100%, 75%)',
-		},
-		{
-			id: 2,
-			content: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint alias modi repudiandae necessitatibus velit accusamus. Fuga earum ratione iure perspiciatis!',
-			date: '2022/12/20',
-			bgColor: 'hsl(10.97468569202615, 100%, 75%)',
-		},
-	]);
 </script>
