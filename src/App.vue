@@ -1,9 +1,9 @@
 <template>
 	<!-- <RouterView /> -->
 
-	<button @click="showModal = true" class="bg-teal-500 text-white text-xl px-3 py-2 shadow-md rounded-md absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hover:bg-teal-700 transition">Open Modal</button>
+	<button @click="openModal()" class="bg-teal-500 text-white text-xl px-3 py-2 shadow-md rounded-md absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hover:bg-teal-700 transition">Open Modal</button>
 
-	<div v-show="showModal" @click.self="closeModal()" class="absolute inset-0 w-screen h-screen bg-black/50 flex justify-center items-center">
+	<div v-show="isModalOpen" @click.self="closeModal()" class="absolute inset-0 w-screen h-screen bg-black/50 flex justify-center items-center">
 		<div class="bg-white flex flex-col w-full max-w-4xl max-h-[80vh] rounded-md shadow-md overflow-hidden">
 			<header class="bg-slate-600 text-white text-3xl p-3">Title</header>
 
@@ -40,9 +40,13 @@
 <script setup>
 	import { ref } from 'vue';
 
-	const showModal = ref(false);
+	const isModalOpen = ref(false);
+
+	const openModal = () => {
+		isModalOpen.value = true;
+	};
 
 	const closeModal = () => {
-		showModal.value = false;
+		isModalOpen.value = false;
 	};
 </script>
